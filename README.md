@@ -23,4 +23,9 @@ Save this code in a file with the name ws3d.sh and call
 ```bash
 chmod ugo+x ws3d.sh
 ```
-to make it executable
+to make it executable.
+Run
+```bash
+./ws3d.sh
+```
+to run it. 
