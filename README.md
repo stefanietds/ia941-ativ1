@@ -29,3 +29,12 @@ Run
 ./ws3d.sh
 ```
 to run it. 
+Then, in a second shell, run
+```bash
+./gradlew build
+```
+to build the WS3DApp and
+```bash
+./gradlew run
+```
+to run it. 
