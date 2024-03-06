@@ -3,7 +3,6 @@
  */
 package WS3DApp;
 
-import java.util.List;
 import java.util.Random;
 import ws3dproxy.WS3DProxy;
 import ws3dproxy.model.Creature;
@@ -17,6 +16,10 @@ public class App {
     public World w;
     public int width;
     public int height;
+    
+    public String getGreeting() {
+        return("Greetings...");
+    }
     
     public App() {
         WS3DProxy proxy = new WS3DProxy();
