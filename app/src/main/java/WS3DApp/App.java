@@ -3,68 +3,39 @@
  */
 package WS3DApp;
 
-import java.util.Random;
-import ws3dproxy.WS3DProxy;
+import javax.swing.SwingUtilities;
 import ws3dproxy.model.Creature;
-import ws3dproxy.model.Thing;
-import ws3dproxy.model.World;
-import ws3dproxy.model.WorldPoint;
+
 
 public class App {
+    //private static World w;
+    private static Creature creature;
+    private Movement movement;
     
-    public Creature c;
-    public World w;
-    public int width;
-    public int height;
-    
-    public String getGreeting() {
-        return("Greetings...");
-    }
-    
-    public App() {
-        WS3DProxy proxy = new WS3DProxy();
-        try {   
-            w = World.getInstance();
-            width = w.getEnvironmentWidth();
-            height = w.getEnvironmentHeight();
-            
-            w.reset();
-            World.createFood(0, 350, 75);
-            World.createFood(0, 100, 220);
-            World.createFood(1, 250, 210);
-            World.createDeliverySpot(250, 250);
-            World.createJewel(0, 10, 50);
-            World.createJewel(1, 100, 500);
-            World.createBrick(3, 500, 200, 505, 300);
-            c = proxy.createCreature(100,450,0);
-            c.start();
-            
-        } catch (Exception e) {
-            System.out.println("Erro capturado"); 
-        }
-    }
-            
-
     public static void main(String[] args) {
-        Random r = new Random();
-        App app = new App();
-        try {
-            while(true) {
-                app.c.moveto(4, r.nextInt(app.width),r.nextInt(app.height));
-                Thread.sleep(5000);
-                WorldPoint position = app.c.getPosition();
-                double pitch = app.c.getPitch();
-                double fuel = app.c.getFuel();
-                System.out.println("Creature is at "+position+" with pitch "+pitch+" and fuel "+fuel);
-                app.c.updateState();
-                System.out.print("It can see the following from here: ");
-                for (Thing t : app.c.getThingsInVision()) {
-                    System.out.print(" "+t.getName());
-                }
-                System.out.println("");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro capturado"); 
+        try{
+            VirtualWorld.CreateWorld();
+            creature = VirtualCreature.CreateCreature();
+            VirtualFood.CreateFood();
+            VirtualJewel.CreateJewel();
+            VirtualBrick.CreateBrick();
+            
+        } catch(Exception e){
+            System.out.println("Erro");
         }
+        
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MoveCreature moveCreature = new MoveCreature();
+                moveCreature.setTitle("Controle da Criatura");
+                moveCreature.setSize(170, 170);
+                moveCreature.setDefaultCloseOperation(MoveCreature.EXIT_ON_CLOSE);
+                moveCreature.getContentPane().add(moveCreature.movement);
+                moveCreature.pack();
+                moveCreature.setVisible(true);
+                moveCreature.requestFocusInWindow();
+            }
+        });
     }
 }
