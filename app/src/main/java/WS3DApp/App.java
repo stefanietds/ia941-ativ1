@@ -3,14 +3,127 @@
  */
 package WS3DApp;
 
-import javax.swing.SwingUtilities;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import javax.swing.JFrame;
+import ws3dproxy.CommandExecException;
 import ws3dproxy.model.Creature;
+import ws3dproxy.model.Leaflet;
+import ws3dproxy.model.Thing;
+import ws3dproxy.model.World;
 
 
-public class App {
-    //private static World w;
+public class App extends JFrame implements KeyListener {
+    private static World w;
     private static Creature creature;
-    private Movement movement;
+    
+    @Override
+    public void keyTyped(KeyEvent e) {
+       //System.out.println("keyTyped - pressionado");
+    }
+    
+     @Override
+    public void keyReleased(KeyEvent e){
+        List<String> HideThigs = new ArrayList<>();
+        
+        try{                      
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                creature.rotate(1);
+
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                creature.rotate(-1);
+
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                creature.move(-1.0, -1.0, 1.0);
+                
+            } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                creature.move(1.0, 1.0, 1.0);
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_C) {
+
+                List<Thing> thingsList = creature.getThingsInVision();
+
+                for (Thing t : thingsList) {
+                    System.out.println(t.getName());
+                    double distance = creature.calculateDistanceTo(t);
+
+                    if (distance <= 50) {
+                        creature.eatIt(t.getName());
+                    }
+                }
+
+            } 
+            else if (e.getKeyCode() == KeyEvent.VK_S) {
+                List<Thing> thingsList = creature.getThingsInVision();
+
+                for (Thing t : thingsList) {
+                    double distance = creature.calculateDistanceTo(t);
+                    if (distance <= 50) {
+                        creature.putInSack(t.getName());
+                        System.out.println("Saco: " + t.getName());
+                    }
+                }
+            } else if (e.getKeyCode() == KeyEvent.VK_H) {
+                List<Thing> thingsList = creature.getThingsInVision();
+
+                for (Thing t : thingsList) {
+                    double distance = creature.calculateDistanceTo(t);
+                    if (distance <= 100) {
+                        creature.hideIt(t.getName());
+
+                        HideThigs.add(t.getName());
+                        System.out.println("HideIt: " + t.getName());
+                    }
+                }
+
+            } 
+            
+            else if (e.getKeyCode() == KeyEvent.VK_U) {
+
+                if (HideThigs != null) {
+                    for (String t : HideThigs) {
+                        creature.unhideIt(t);
+                    }
+                }
+            } else if (e.getKeyCode() == KeyEvent.VK_L) {
+                List<Leaflet> leaflets = creature.getLeaflets();
+
+                for (Leaflet item : leaflets) {
+                    System.out.println("Leaflets: " + item.getID());
+                    creature.genLeaflet();
+                    creature.deliverLeaflet(item.getID().toString());
+                }
+            } 
+            else if (e.getKeyCode() == KeyEvent.VK_B) {
+                creature.updateBag();
+            }
+            else if(e.getKeyCode() == KeyEvent.VK_A){
+                Random r = new Random();
+                creature.moveto(4, r.nextInt(100), r.nextInt(100));
+            }
+        } catch(CommandExecException ex){
+            System.out.println("Erro");
+        }       
+    }
+    
+    @Override
+    public void keyPressed(KeyEvent e) {
+       //System.out.println("keyPressed");
+    }
+    
+    
+    public App() {
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
+//        setTitle("Controle da Criatura");
+//        setSize(300, 200);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setVisible(true);
+    }
     
     public static void main(String[] args) {
         try{
@@ -23,19 +136,5 @@ public class App {
         } catch(Exception e){
             System.out.println("Erro");
         }
-        
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                MoveCreature moveCreature = new MoveCreature();
-                moveCreature.setTitle("Controle da Criatura");
-                moveCreature.setSize(170, 170);
-                moveCreature.setDefaultCloseOperation(MoveCreature.EXIT_ON_CLOSE);
-                moveCreature.getContentPane().add(moveCreature.movement);
-                moveCreature.pack();
-                moveCreature.setVisible(true);
-                moveCreature.requestFocusInWindow();
-            }
-        });
     }
 }
