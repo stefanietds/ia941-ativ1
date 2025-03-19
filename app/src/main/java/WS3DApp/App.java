@@ -27,7 +27,7 @@ public class App extends JFrame implements KeyListener {
     
      @Override
     public void keyReleased(KeyEvent e){
-        List<String> HideThigs = new ArrayList<>();
+        List<String> HideThings = new ArrayList<>();
         
         try{                      
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -74,7 +74,7 @@ public class App extends JFrame implements KeyListener {
                     if (distance <= 100) {
                         creature.hideIt(t.getName());
 
-                        HideThigs.add(t.getName());
+                        HideThings.add(t.getName());
                         System.out.println("HideIt: " + t.getName());
                     }
                 }
@@ -83,8 +83,8 @@ public class App extends JFrame implements KeyListener {
             
             else if (e.getKeyCode() == KeyEvent.VK_U) {
 
-                if (HideThigs != null) {
-                    for (String t : HideThigs) {
+                if (HideThings != null) {
+                    for (String t : HideThings) {
                         creature.unhideIt(t);
                     }
                 }
@@ -93,8 +93,6 @@ public class App extends JFrame implements KeyListener {
 
                 for (Leaflet item : leaflets) {
                     System.out.println("Leaflets: " + item.getID());
-                    creature.genLeaflet();
-                    creature.deliverLeaflet(item.getID().toString());
                 }
             } 
             else if (e.getKeyCode() == KeyEvent.VK_B) {
