@@ -21,40 +21,6 @@ public class App extends JFrame {
     private static Creature creature;
     private static Modal modal;
     
-//    @Override
-//    public void keyTyped(KeyEvent e) {
-//       //System.out.println("keyTyped - pressionado");
-//    }
-//    
-//     @Override
-//    public void keyReleased(KeyEvent e){
-//        try{                      
-//            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-//                System.out.println("Direita");
-//                creature.rotate(1);
-//
-//            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-//                System.out.println("Esquerda");
-//                creature.rotate(-1);
-//
-//            } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-//                System.out.println("BAIXO");
-//                creature.move(-1.0, -1.0, 1.0);
-//                
-//            } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-//                System.out.println("CIMA");
-//                creature.move(1.0, 1.0, 1.0);
-//            }
-//        } catch(CommandExecException ex){
-//            System.out.println("Erro");
-//        }       
-//    }
-//    
-//    @Override
-//    public void keyPressed(KeyEvent e) {
-//       //System.out.println("keyPressed");
-//    }
-    
     
     public App() {
 //      
