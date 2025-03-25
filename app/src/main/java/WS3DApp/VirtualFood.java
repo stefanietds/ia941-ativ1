@@ -31,9 +31,28 @@ public class VirtualFood {
                 World.createFood(type, x, y);
                 
             } catch (CommandExecException ex) {
-                System.out.println("Erro ao criar a joia");
+                System.out.println("Erro ao criar a comida");
             }
     }
+    
+        static void CreateFoodByName(String name) {
+            
+            try{
+            Random r = new Random();
+            int x = r.nextInt(150);
+            int y = r.nextInt(180);
+            int itemSelecionado;
+            if ("Perecivel".equals(name)) {
+                itemSelecionado = 0;
+            } else {
+                itemSelecionado = 1;
+            }
+            World.createFood(itemSelecionado, x, y);
+            } 
+            catch (CommandExecException ex) {
+                System.out.println("Erro ao criar a comida");
+            }
+        }
     
         static void OnTime(Creature creature) {
         ActionListener actListner = new ActionListener() {

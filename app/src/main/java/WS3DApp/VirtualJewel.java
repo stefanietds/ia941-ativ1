@@ -38,6 +38,34 @@ public class VirtualJewel {
             }
     }
     
+            static void CreateJewelByName(String name) {
+            
+            try{
+            Random r = new Random();
+            int x = r.nextInt(150);
+            int y = r.nextInt(180);
+            int itemSelecionado;
+            if ("Red".equals(name)) {
+                itemSelecionado = 0;
+            } else if ("Green".equals(name)) {
+                itemSelecionado = 1;
+            }  else if ("Blue".equals(name)) {
+                itemSelecionado = 2;
+            }  else if ("Yellow".equals(name)) {
+                itemSelecionado = 3;
+            } else if ("Magenta".equals(name)) {
+                itemSelecionado = 4;
+            }
+            else {
+                itemSelecionado = 5;
+            }
+            World.createJewel(itemSelecionado, x, y);
+            } 
+            catch (CommandExecException ex) {
+                System.out.println("Erro ao criar a joia");
+            }
+        }
+    
     
 //    static void OnTime(Creature creature) {
 //        ActionListener actListner = new ActionListener() {

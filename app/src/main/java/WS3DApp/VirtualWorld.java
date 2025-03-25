@@ -29,15 +29,16 @@ public class VirtualWorld {
         }
     }
     
-//        static void OnTime(Creature creatureApp) {
-//        ActionListener actListner = new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent event) {
-//
-//                creatureApp.updateState();
-//            }
-//        };
-//        Timer timer = new Timer(100, actListner);
-//        timer.start();
-//    }
+        static void OnTime(Creature creatureApp) {
+        ActionListener actListner = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+
+                creatureApp.updateState();
+            }
+        };
+        Timer timer = new Timer(100, actListner);
+        timer.start();
+       }
+
 }

@@ -4,12 +4,8 @@
  */
 package WS3DApp;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
-import javax.swing.Timer;
 import ws3dproxy.CommandExecException;
-import ws3dproxy.model.Creature;
 import ws3dproxy.model.World;
 
 /**
