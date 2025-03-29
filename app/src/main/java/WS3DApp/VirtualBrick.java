@@ -29,16 +29,5 @@ public class VirtualBrick {
         }
     }
     
-//        static void OnTime(Creature creature) {
-//        ActionListener actListner = new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent event) {
-//
-//                creature.updateState();
-//            }
-//        };
-//        Timer timer = new Timer(100, actListner);
-//        timer.start();
-//    }
 }
 

@@ -181,7 +181,7 @@ public class Modal extends javax.swing.JDialog implements KeyListener {
             }
         });
 
-        jLabel11.setText("Capture e veja os items:");
+        jLabel11.setText("Capture os items:");
 
         jButton9.setText("Enviar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -225,14 +225,14 @@ public class Modal extends javax.swing.JDialog implements KeyListener {
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addGap(81, 81, 81)
                                         .addComponent(jButton7))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton9)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,8 +445,8 @@ public class Modal extends javax.swing.JDialog implements KeyListener {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        Bag a = VirtualCreature.CaptureAndPutInBag();
-        JOptionPane.showMessageDialog(this, "Bag: " + a);
+        var bag = VirtualCreature.CaptureAndPutInBag();
+        JOptionPane.showMessageDialog(this, "Bag: " + bag);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
